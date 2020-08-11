@@ -9,14 +9,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
-const apiRoutes = require(path.resolve(__dirname, "./routes/apiRoutes"));
+app.use(express.static(path.join(__dirname, "./client/build")));
+
+const apiRoutes = require(path.join(__dirname, "./routes/apiRoutes"));
 app.use("/api", apiRoutes);
 
-const clientRoutes = require(path.resolve(
-  __dirname,
-  "./routes/clientRoutes.js"
-));
-app.use("/client", clientRoutes);
+const clientRoutes = require(path.join(__dirname, "./routes/clientRoutes.js"));
+app.use("/", clientRoutes);
 
 db.sequelize.sync().then(() => {
   app.listen(PORT, () => {
