@@ -12,6 +12,12 @@ app.use(cors());
 const apiRoutes = require(path.resolve(__dirname, "./routes/apiRoutes"));
 app.use("/api", apiRoutes);
 
+const clientRoutes = require(path.resolve(
+  __dirname,
+  "./routes/clientRoutes.js"
+));
+app.use(clientRoutes);
+
 db.sequelize.sync().then(() => {
   app.listen(PORT, () => {
     console.log(`listening on: http://localhost:${PORT}`);
