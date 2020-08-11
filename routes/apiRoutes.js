@@ -3,6 +3,7 @@ const router = express.Router();
 const db = require("../models");
 
 // get all todos
+// adding more code
 router.get("/all", (req, res) => {
   db.Todo.findAll().then((todos) => res.send(todos));
 });
