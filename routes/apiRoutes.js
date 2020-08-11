@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const db = require(__dirname + "../models");
+const path = require("path");
+const db = require(path.resolve(__dirname, "../models"));
 
 // get all todos
 // adding more code
+// changing config settings
 router.get("/all", (req, res) => {
   db.Todo.findAll().then((todos) => res.send(todos));
 });
