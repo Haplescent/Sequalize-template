@@ -16,7 +16,7 @@ const clientRoutes = require(path.resolve(
   __dirname,
   "./routes/clientRoutes.js"
 ));
-app.use(clientRoutes);
+app.use("/client", clientRoutes);
 
 db.sequelize.sync().then(() => {
   app.listen(PORT, () => {
