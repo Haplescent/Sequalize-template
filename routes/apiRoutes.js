@@ -3,43 +3,49 @@ const router = express.Router();
 const path = require("path");
 const db = require(path.resolve(__dirname, "../models"));
 
-// get all todos
+// get all Users
 // adding more code
 // changing config settings
 router.get("/all", (req, res) => {
-  db.Todo.findAll().then((todos) => res.send(todos));
+  db.User.findAll().then((Users) => res.send(Users));
 });
 
-// get single todo by id
+// get single User by id
 router.get("/find/:id", (req, res) => {
-  db.Todo.findAll({
+  db.User.findAll({
     where: {
       id: req.params.id,
     },
-  }).then((todo) => res.send(todo));
+  }).then((user) => res.send(user));
 });
 
-// post new todo
+// post new User
 router.post("/new", (req, res) => {
-  db.Todo.create({
-    text: req.body.text,
-  }).then((submitedTodo) => res.send(submitedTodo));
+  db.User.create({
+    name: req.body.name,
+    phone: req.body.phone,
+    address: req.body.address,
+    title: req.body.title,
+  }).then((submittedUser) => res.send(submittedUser));
 });
 
-// delete todo
+// delete User
 router.delete("/delete/:id", (req, res) => {
-  db.Todo.destroy({
+  db.User.destroy({
     where: {
       id: req.params.id,
     },
   }).then(() => res.send("success"));
 });
 
-// edit a todo
+// edit a User
 router.put("/edit", (req, res) => {
-  db.Todo.update(
+  db.User.update(
     {
-      text: req.body.text,
+      name: req.body.name,
+      phone: req.body.phone,
+      address: req.body.address,
+      title: req.body.title,
     },
     {
       where: { id: req.body.id },

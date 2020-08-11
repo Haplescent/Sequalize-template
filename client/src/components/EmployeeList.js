@@ -7,7 +7,7 @@ function EmployeeList() {
 
   return (
     <div>
-      <ul>{employeeList.map((employee) => employee.text)}</ul>
+      <ul>{employeeList.map((employee) => employee.name)}</ul>
     </div>
   );
 }
