@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
-const db = require("./models");
+const db = require(__dirname + "./models");
 const PORT = process.env.PORT || 8080;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const apiRoutes = require("./routes/apiRoutes");
+const apiRoutes = require(__dirname + "./routes/apiRoutes");
 app.use("/api", apiRoutes);
 
 db.sequelize.sync().then(() => {
