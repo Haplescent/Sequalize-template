@@ -10,10 +10,8 @@ app.use(express.json());
 app.use(cors());
 
 app.use(express.static(path.join(__dirname, "./client/build")));
-
 const apiRoutes = require(path.join(__dirname, "./routes/apiRoutes"));
 app.use("/api", apiRoutes);
-
 const clientRoutes = require(path.join(__dirname, "./routes/clientRoutes.js"));
 app.use("/", clientRoutes);
 
