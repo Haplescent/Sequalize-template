@@ -1,18 +1,18 @@
 import React from "react";
 
-const useHandleRowAdd = (setEmployeeList) => {
-  const handleOnRowAdd = (newData) =>
+const useHandleRowDelete = (setEmployeeList) => {
+  const handleOnRowDelete = (oldData) =>
     new Promise((resolve) => {
       setTimeout(() => {
         resolve();
         setEmployeeList((prevState) => {
           const data = [...prevState.data];
-          data.push(newData);
+          data.splice(data.indexOf(oldData), 1);
           return { ...prevState, data };
         });
       }, 600);
     });
-  return handleOnRowAdd;
+  return handleOnRowDelete;
 };
 
-export default useHandleRowAdd;
+export default useHandleRowDelete;
