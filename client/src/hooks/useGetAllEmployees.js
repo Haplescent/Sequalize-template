@@ -23,7 +23,7 @@ const useGetAllEmployees = () => {
     };
     apiCall();
   }, []);
-  return employeeList;
+  return { data: employeeList };
 };
 
 export default useGetAllEmployees;

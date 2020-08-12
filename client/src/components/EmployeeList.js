@@ -374,7 +374,6 @@ export default function EmployeeList() {
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
       />
-      <ul>{employeeList.map((employee) => employee.name)}</ul>
     </div>
   );
 }
