@@ -27,15 +27,6 @@ function createData(name, phone, address, title) {
   return { name, phone, address, title };
 }
 
-const rows = [
-  createData(
-    "John",
-    "6508677015",
-    "766 Harrison St, Unit 209, San Francisco, CA, 94401",
-    "Scientist"
-  ),
-];
-
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -239,6 +230,18 @@ export default function EmployeeList() {
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
+  const employeeList = useGetAllEmployees();
+
+  const rows = employeeList.map((employee) => {
+    return {
+      name: employee.name,
+      phone: employee.phone,
+      address: employee.address,
+      title: employee.title,
+    };
+  });
+  console.log(rows);
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
@@ -291,8 +294,6 @@ export default function EmployeeList() {
 
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
-
-  const employeeList = useGetAllEmployees();
 
   return (
     <div className={classes.root}>
