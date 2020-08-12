@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MaterialTable from "material-table";
 
 import useGetAllEmployees from "../hooks/useGetAllEmployees.js";
+import useHandleRowAdd from "../hooks/useHandleRowAdd.js";
 
 export default function MaterialTableDemo() {
   const columns = [
@@ -11,19 +12,10 @@ export default function MaterialTableDemo() {
     { title: "Title", field: "title" },
   ];
   const [EmployeeList, setEmployeeList] = useState({});
+
   useGetAllEmployees(setEmployeeList);
 
-  const handleOnRowAdd = (newData) =>
-    new Promise((resolve) => {
-      setTimeout(() => {
-        resolve();
-        setEmployeeList((prevState) => {
-          const data = [...prevState.data];
-          data.push(newData);
-          return { ...prevState, data };
-        });
-      }, 600);
-    });
+  const handleOnRowAdd = useHandleRowAdd();
 
   const handleOnRowUpdate = (newData, oldData) =>
     new Promise((resolve) => {
