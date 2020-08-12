@@ -1,11 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 
-const useGetAllEmployees = () => {
-  const [employeeList, setEmployeeList] = useState({});
-
+const useGetAllEmployees = (setEmployeeList) => {
   useEffect(() => {
-    const apiCall = async () => {
+    const apiCall = async (setEmployeeList) => {
       let config = {
         method: "get",
         url: "https://secret-castle-21752.herokuapp.com/api/all",
@@ -34,10 +32,8 @@ const useGetAllEmployees = () => {
           console.log(error);
         });
     };
-    apiCall();
-  }, []);
-
-  return employeeList;
+    apiCall(setEmployeeList);
+  }, [setEmployeeList]);
 };
 
 export default useGetAllEmployees;
