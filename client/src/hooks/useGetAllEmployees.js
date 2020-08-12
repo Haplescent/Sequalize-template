@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const useGetAllEmployees = () => {
-  const [employeeList, setEmployeeList] = useState([]);
+  const [employeeList, setEmployeeList] = useState({});
 
   useEffect(() => {
     const apiCall = async () => {
@@ -15,7 +15,20 @@ const useGetAllEmployees = () => {
       await axios(config)
         .then(function (response) {
           let jsonString = JSON.stringify(response.data);
-          setEmployeeList(JSON.parse(jsonString));
+
+          let jsonObject = JSON.parse(jsonString);
+
+          const employeeListMapped = jsonObject.map((employee) => {
+            return {
+              name: employee.name,
+              phone: employee.phone,
+              address: employee.address,
+              title: employee.title,
+            };
+          });
+          let EmployeeData = { data: employeeListMapped };
+
+          setEmployeeList(EmployeeData);
         })
         .catch(function (error) {
           console.log(error);
@@ -23,7 +36,8 @@ const useGetAllEmployees = () => {
     };
     apiCall();
   }, []);
-  return { data: employeeList };
+
+  return employeeList;
 };
 
 export default useGetAllEmployees;
