@@ -22,6 +22,7 @@ const useGetAllEmployees = (setEmployeeList) => {
               phone: employee.phone,
               address: employee.address,
               title: employee.title,
+              id: employee.id,
             };
           });
           let EmployeeData = { data: employeeListMapped };

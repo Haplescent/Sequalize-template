@@ -1,7 +1,7 @@
 import axios from "axios";
 import qs from "qs";
 
-const AptPostNewUser = (newUser) => {
+const ApiPostNewUser = (newUser) => {
   var data = qs.stringify({
     name: newUser.name,
     phone: newUser.phone,
@@ -31,7 +31,7 @@ const useHandleRowAdd = (setEmployeeList) => {
         resolve();
         setEmployeeList((prevState) => {
           const data = [...prevState.data];
-          AptPostNewUser(newData);
+          ApiPostNewUser(newData);
           data.push(newData);
           return { ...prevState, data };
         });
