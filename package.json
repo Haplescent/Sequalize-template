@@ -9,6 +9,7 @@
     "build": "cd client/ && npm install && npm run build",
     "dev": "npm run build && npm run start"
   },
+  "proxy": "http://localhost:3001",
   "keywords": [],
   "author": "",
   "license": "ISC",

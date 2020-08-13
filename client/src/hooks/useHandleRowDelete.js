@@ -1,5 +1,3 @@
-import React from "react";
-
 const useHandleRowDelete = (setEmployeeList) => {
   const handleOnRowDelete = (oldData) =>
     new Promise((resolve) => {

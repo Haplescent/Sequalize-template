@@ -3,6 +3,8 @@ import MaterialTable from "material-table";
 
 import useGetAllEmployees from "../hooks/useGetAllEmployees.js";
 import useHandleRowAdd from "../hooks/useHandleRowAdd.js";
+import useHandleRowDelete from "../hooks/useHandleRowDelete.js";
+import useHandleRowUpdate from "../hooks/useHandleRowUpdate.js";
 
 export default function MaterialTableDemo() {
   const columns = [
@@ -14,34 +16,9 @@ export default function MaterialTableDemo() {
   const [EmployeeList, setEmployeeList] = useState({});
 
   useGetAllEmployees(setEmployeeList);
-
-  const handleOnRowAdd = useHandleRowAdd();
-
-  const handleOnRowUpdate = (newData, oldData) =>
-    new Promise((resolve) => {
-      setTimeout(() => {
-        resolve();
-        if (oldData) {
-          setEmployeeList((prevState) => {
-            const data = [...prevState.data];
-            data[data.indexOf(oldData)] = newData;
-            return { ...prevState, data };
-          });
-        }
-      }, 600);
-    });
-
-  const handleOnRowDelete = (oldData) =>
-    new Promise((resolve) => {
-      setTimeout(() => {
-        resolve();
-        setEmployeeList((prevState) => {
-          const data = [...prevState.data];
-          data.splice(data.indexOf(oldData), 1);
-          return { ...prevState, data };
-        });
-      }, 600);
-    });
+  const handleOnRowAdd = useHandleRowAdd(setEmployeeList);
+  const handleOnRowUpdate = useHandleRowUpdate(setEmployeeList);
+  const handleOnRowDelete = useHandleRowDelete(setEmployeeList);
 
   return (
     <MaterialTable

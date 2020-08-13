@@ -1,5 +1,3 @@
-import React from "react";
-
 const useHandleRowUpdate = (setEmployeeList) => {
   const handleOnRowUpdate = (newData, oldData) =>
     new Promise((resolve) => {
